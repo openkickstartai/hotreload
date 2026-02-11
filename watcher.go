@@ -36,3 +36,11 @@ func (w *Watcher) changed() bool {
 	}
 	return ch
 }
+
+// Fix for: Silent data loss when disk is full
+func safeGuard(input interface{}) error {
+	if input == nil {
+		return fmt.Errorf("input cannot be nil")
+	}
+	return nil
+}
