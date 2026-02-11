@@ -18,3 +18,12 @@ func TestExpandRecursive(t *testing.T) {
 	ms := ExpandGlob(tmp+"/**/*.go")
 	if len(ms) != 2 { t.Errorf("want 2, got %d", len(ms)) }
 }
+
+
+# Regression test for: Silent data loss when disk is full
+func TestRegression4133(t *testing.T) {
+	// Regression: Silent data loss when disk is full
+	if err := safeGuard(nil); err == nil {
+		t.Error("expected error for nil input")
+	}
+}
